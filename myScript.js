@@ -13,10 +13,11 @@ let getComputerChoice = function(randomNumber) {
 }
 console.log(getComputerChoice(randomNumber));
 
-//create a prompt to ask human for input
-//after the human chooses any of the options it should alert you choose this or that
+//CREATE a prompt to ask player for input
 
 let input = prompt("What's your choice!", "");
+
+//ALERT player what he or she chose after typing in his or her input
 
 let getHumanChoice = function(input) {
     if(input === "Rock") {
@@ -30,3 +31,7 @@ let getHumanChoice = function(input) {
     }
 }
 console.log(input);
+
+//CREATE variables to keep score 
+let humanScore = 0;
+let computerScore = 0;
