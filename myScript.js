@@ -1,5 +1,3 @@
-//WRITE a code that chooses 3 numbers randomly//
-//LET the numbers be represented by rock paper scissors, where 0 is rock, 1 is paper and 2 is scissors// 
 function playGame() {
     let choices = ["rock", "paper", "scissors"];
     let humanScore = 0;
@@ -21,6 +19,8 @@ function playGame() {
         }
         
         //GET computer choice
+        //WRITE a code that chooses 3 numbers randomly//
+        //LET the numbers be represented by rock paper scissors, where 0 is rock, 1 is paper and 2 is scissors// 
         let getComputerChoice = choices[Math.floor(Math.random() * 3)];
         
         console.log(`Human chose: ${getHumanChoice}`);
