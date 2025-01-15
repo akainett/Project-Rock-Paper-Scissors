@@ -1,93 +1,64 @@
 //WRITE a code that chooses 3 numbers randomly//
-let randomNumber = Math.floor(Math.random() * 3);
-        
 //LET the numbers be represented by rock paper scissors, where 0 is rock, 1 is paper and 2 is scissors// 
-let getComputerChoice = function(randomNumber) {
-    if(randomNumber === 0) {
-        return "Rock";
-    }else if(randomNumber === 1) {
-        return "Paper";
-    }else{
-        return "Scissors";
-        }    
-}
-console.log(getComputerChoice(randomNumber));
-
-//CREATE a prompt to ask player for input
-
-let input = prompt("What's your choice!", "");
-
-//ALERT player what he or she chose after typing in his or her input
-
-let getHumanChoice = function(input) {
-    if(input == "Rock") {
-        return "Rock";
-    }else if(input == "Paper") {
-        return "Paper";
-    }else if(input == "Scissors") {
-        return "Scissors";
-    }else{
-        alert("Oops, Wrong Option");
-    }
-};
-console.log(input);
-
-//CREATE variables to keep score 
-let humanScore = 0;
-let computerScore = 0;
-
-//write function with condition for when player chooses either Rock,Paper or scissors. increase score for winner of round
-function playRound(humanChoice, computerChoice) {
-    if(humanChoice == "Rock") {
-        if(computerChoice === "Paper") {
-            console.log("You lose!, Paper beats Rock");
-            console.log("computerScore =", ++computerScore);
-            console.log("humanScore =", humanScore);
-        }else if(computerChoice === "Scissors") {
-            console.log("You won");
-            console.log("computerScore =", computerScore);
-            console.log("humanScore =", ++humanScore);
-        }else{
-            console.log("Draw");
-            console.log("computerScore =", computerScore);
-            console.log("humanScore =", humanScore);
+function playGame() {
+    let choices = ["rock", "paper", "scissors"];
+    let humanScore = 0;
+    let computerScore = 0;
+    
+    console.log("Welcome to Rock, Paper, Scissors. This game has 5 rounds\n")
+    //CREATE for loop for five rounds
+    
+    for (let round = 1; round <= 5; round++) {
+        console.log(`--- Round ${round} ---`)
+        
+        //CREATE a prompt to ask player for input
+        //GET player choice
+        let getHumanChoice = prompt("What's your choice!").toLowerCase();
+        if(!choices.includes(getHumanChoice)) {
+            console.log("Incorrect entry, choose either rock, paper, or scissors");
+            round--;
+            continue; 
         }
-    }else if(humanChoice == "Paper") {
-        if(computerChoice === "Scissors") {
-            console.log("You lose!, Scissors beats Rock");
-            console.log("computerScore =", ++computerScore);
-            console.log("humanScore =", humanScore);
-        }else if(computerChoice === "Rock") {
-            console.log("You won");
-            console.log("computerScore =", computerScore);
-            console.log("humanScore =", ++humanScore);
-        }else{
-            console.log("Draw");
-            console.log("computerScore =", computerScore);
-            console.log("humanScore =", humanScore);
+        
+        //GET computer choice
+        let getComputerChoice = choices[Math.floor(Math.random() * 3)];
+        
+        console.log(`Human chose: ${getHumanChoice}`);
+        console.log(`Computer chose: ${getComputerChoice}`);
+        
+        //CREATE condition for who wins the round. Increase score for winner of round
+        
+        if(getHumanChoice === getComputerChoice) {
+            console.log("It's a draw round");
+            
+        }else if(
+            (getHumanChoice === "rock" && getComputerChoice === "scissors") ||
+            (getHumanChoice === "paper" && getComputerChoice === "rock") ||
+            (getHumanChoice === "scissors" && getComputerChoice === "paper")
+        ) {
+            console.log("You won this round");
+            humanScore++;
+            
+        }else {
+            console.log("You lose this round")
+            computerScore++;
         }
-    }else if(humanChoice == "Scissors"){
-        if(computerChoice === "Rock") {
-            console.log("You lose!, Rock beats Scissors");
-            console.log("computerScore =", ++computerScore);
-            console.log("humanScore =", humanScore);
-        }else if(computerChoice === "Paper") {
-            console.log("You won");
-            console.log("computerScore =", computerScore);
-            console.log("humanScore =", ++humanScore);
-        }else{
-            console.log("Draw");
-            console.log("computerScore =", computerScore);
-            console.log("humanScore =", humanScore);
-        }
-    }else{
-        console.log("Incorrect Choice!, choose either Rock, Paper, or Scissors");
+        console.log(`Human score = ${humanScore}`);
+        console.log(`Computer score = ${computerScore}`)
+        
     }
     
+    //DISPLAY final results
+    console.log("         Game Over       ");
+    console.log(`Human Final Score = ${humanScore}`);
+    console.log(`Computer Final Score = ${computerScore}`);
+    
+    if(humanScore > computerScore) {
+        console.log("Congratulation! you have won")
+    }else if(humanScore < computerScore) {
+        console.log("You lose the game")
+    }else{
+        console.log("Its a draw match")
+    }
 }
-
-const humanSelection = getHumanChoice(input);
-const computerSelection = getComputerChoice(randomNumber);
-
-playRound(humanSelection, computerSelection);
-  
+playGame();    
